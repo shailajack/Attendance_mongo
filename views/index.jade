@@ -1,0 +1,59 @@
+h1= title
+form(action="/completeattendance", method="post")
+  table(border="1")
+    tr
+      td Name
+      td Emailid
+      td ContactNumber
+      td EnrollmentDate
+      td TotalHours
+      td HoursAttended
+      td Date
+      td Present
+    each attendance in attendance_s
+      tr
+        td #{attendance.studentName}
+        td #{attendance.studentEmail}
+        td #{attendance.studentContactNum}
+        td #{attendance.enrollmentDate}
+        td #{attendance.totalHrs}
+        td #{attendance.hrsAttended}
+        - var day   = attendance.today.getDate();
+        - var month = attendance.today.getMonth() + 1;
+        - var year  = attendance.today.getFullYear();
+        td #{month + "/" + day + "/" + year}
+        td
+          input(type="checkbox", name="#{attendance._id}", value="#{!attendance.present}", checked=attendance.present)
+  input(type="submit", value="Update attendance_s")
+hr
+form(action="/addattendance", method="post")
+  table(border="1") 
+    tr
+      td Student Name: 
+      td 
+        input(name="student[name]", type="textbox")
+    tr
+      td Student Emailid: 
+      td 
+        input(name="student[emailid]", type="textbox")
+    tr
+      td Student Contactnum: 
+      td 
+        input(name="student[contactnum]", type="textbox")
+    tr
+      td Student Enrollmentdate: 
+      td 
+        input(name="student[enrollmentdate]", type="textbox")
+    tr
+      td Student Totalhrs: 
+      td 
+        input(name="student[totalhrs]", type="textbox")
+    tr
+      td Student Hrsattended: 
+      td 
+        input(name="student[hrsattended]", type="textbox")
+    
+
+  input(type="submit", value="Add student")
+
+  
